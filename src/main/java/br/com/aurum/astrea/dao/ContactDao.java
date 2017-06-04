@@ -14,15 +14,14 @@ public class ContactDao {
 	}
 	
 	public void save(Contact contact) {
-		// TODO: É preciso pesquisar como se usa o Objectify para armazenar a entidade contato no banco de dados.
+		ObjectifyService.ofy().save().entity(contact).now();
 	}
 	
 	public List<Contact> list() {
-		// TODO: É preciso pesquisar como se usa o Objectify para listar as entidades de contato.
-		return new ArrayList<>();
+		return ObjectifyService.ofy().load().type(Contact.class).list();
 	}
 	
 	public void delete(Long contactId) {
-		// TODO: É preciso pesquisar como se usa o Objectify para deletar entidades do banco de dados.
+		ObjectifyService.ofy().delete().type(Contact.class).id(contactId);
 	}
 }

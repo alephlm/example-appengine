@@ -11,8 +11,8 @@ contactAddEditController = function($scope, $http) {
 		$scope.submitted = true;
 
 		if ($scope.contact.name != null && $scope.contact.name != "") {
-
 			// Chamar o servlet /contacts com um método 'POST' para salvar um contato no banco de dados.
+			$http.post('/contacts', $scope.contact).then(function(res){return res.data;}, function(err){return "err";});
 		}
 
 	};
