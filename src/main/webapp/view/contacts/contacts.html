@@ -19,6 +19,8 @@
             <th>Email</th>
             <th>Telefone</th>
             <th>Nascimento</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         
@@ -29,11 +31,12 @@
             <td>{{c.emails[0]}}</td>
             <td>{{c.phones[0]}}</td>
             <td>{{bday(c)}}</td>
-            <td> <i class="fa fa-trash-o icon-box" ng-click="preDelete(c)"></i> <td>    
+            <td><i class="fa fa-pencil-square-o icon-box" ng-click="edit(c)"></i></td>
+            <td><i class="fa fa-trash-o icon-box" ng-click="preDelete(c)"></i> </td>
           </tr>
 
         </tbody>
-        
+
       </table>
 
 

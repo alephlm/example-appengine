@@ -6,7 +6,7 @@ app.config([ '$urlRouterProvider', '$stateProvider',
 			$stateProvider.state('main', {url:'/', templateUrl:'/view/main.html'});
 			$stateProvider.state('main.contacts', {url:'contacts', templateUrl:'/view/contacts/contacts.html'});
 			$stateProvider.state('main.addeditcontact', {url:'addeditcontact', templateUrl:'/view/contacts/contactaddedit.html'});
-			
+
 			$urlRouterProvider.otherwise("/")
 			
 		} ]);
@@ -17,6 +17,16 @@ app.directive('ngBack', function() {
 			history.back();
 		});
 	};
+});
+
+app.factory('Service', function() {
+  var Service = {
+    contact: { emails : [''], phones : ['']}
+  };
+  Service.clean = function(){
+    this.contact = { emails : [''], phones : ['']};
+  }
+  return Service;
 });
 
 mainController = function($scope, $window) {
