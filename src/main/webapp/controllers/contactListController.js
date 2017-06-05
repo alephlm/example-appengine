@@ -8,10 +8,20 @@ contactListController = function($scope, $http, $state, Service) {
 	$scope.init = function() {
 		$scope.listAllContacts();
 	};
+
+    $scope.filterList = function(prop, finding) {
+        $http.get("/contacts/" + prop + "/" + finding ).then(function(res){$scope.contacts=res.data;}, function(err){})
+    };
 	
 	$scope.listAllContacts = function() {
 	    $http.get("/contacts").then(function(res){$scope.contacts=res.data;}, function(err){})
 	};
+
+    $scope.clearFilter = function() {
+		$scope.listAllContacts();
+		$scope.finding = "";
+		$scope.searchText = "";
+    };
 
 	$scope.preDelete = function(contact) {
 		$scope.preDeletedContact = contact;

@@ -9,6 +9,29 @@
       </div>
     </div>
 
+    <div class="form-group">
+        <div class="col-md-4">
+        <input type="text" placeholder="Pesquisa com chamada ao backend" class="form-control" id="search" ng-model="finding">
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Filtro <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="" ng-click="filterList('name', finding)">Nome</a></li>
+                <li><a href="" ng-click="filterList('cpf', finding)">CPF</a></li>
+                <li><a href="" ng-click="filterList('emails', finding)">Email</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="" ng-click="clearFilter()">Limpar Filtro</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-4">
+            <input class="form-control" ng-model="searchText" placeholder="Pesquisa por campos na lista da tabela">
+        </div>
+    </div>
+
     <div class="table-responsive">
 
       <table class="table table-hover">
@@ -26,7 +49,7 @@
         
         <tbody>
 
-          <tr ng-repeat="c in contacts">
+          <tr ng-repeat="c in contacts  | filter:searchText">
             <td>{{c.name}}</td>
             <td>{{c.emails[0]}}</td>
             <td>{{c.phones[0]}}</td>
