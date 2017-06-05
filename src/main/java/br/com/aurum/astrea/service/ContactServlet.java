@@ -2,6 +2,7 @@ package br.com.aurum.astrea.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
@@ -28,7 +29,22 @@ public class ContactServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		List<Contact> lstContact = DAO.list();
+        String pathInfo = req.getPathInfo();
+        List<Contact> lstContact;
+
+        if(pathInfo != null) {
+            String[] pathParts = pathInfo.split("/");
+            if(pathParts.length > 2){
+                String param = pathParts[1];
+                String finding = pathParts[2];
+                lstContact = DAO.listBy(param, finding);
+            } else {
+                lstContact = new ArrayList<>();
+            }
+        } else {
+            lstContact = DAO.list();
+        }
+
 		String json = gson.toJson(lstContact);
 
 		resp.setContentType("application/json");

@@ -18,10 +18,13 @@ public class Contact {
 	private String birthMonth;
 	private String birthYear;
 
+	@Index
 	private String cpf;
 	private String rg;
 
 	private List<String> phones;
+
+	@Index
 	private List<String> emails;
 
 	private String address;

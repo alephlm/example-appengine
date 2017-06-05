@@ -20,7 +20,11 @@ public class ContactDao {
 	public List<Contact> list() {
 		return ObjectifyService.ofy().load().type(Contact.class).list();
 	}
-	
+
+    public List<Contact> listBy(String param, String finding) {
+        return ObjectifyService.ofy().load().type(Contact.class).filter(param, finding).list();
+	}
+
 	public void delete(Long contactId) {
 		ObjectifyService.ofy().delete().type(Contact.class).id(contactId);
 	}
