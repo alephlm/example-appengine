@@ -4,7 +4,6 @@ import br.com.aurum.astrea.dao.ContactDao;
 import br.com.aurum.astrea.domain.Contact;
 import com.google.appengine.repackaged.com.google.gson.Gson;
 
-import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +12,7 @@ public class ContactService {
 	private static final ContactDao DAO = new ContactDao();
 	private static final Gson gson = new Gson();
 
-    public String getContacts(String pathInfo){
+    String getContacts(String pathInfo){
         List<Contact> lstContact;
 
         if(pathInfo != null) {
@@ -32,12 +31,11 @@ public class ContactService {
         return gson.toJson(lstContact);
     }
 
-    public void saveContact(BufferedReader reader){
-        Contact contact = gson.fromJson(reader, Contact.class);
+    void saveContact(Contact contact){
         DAO.save(contact);
     }
 
-    public void deleteContact(String pathInfo){
+    void deleteContact(String pathInfo){
         String[] pathParts = pathInfo.split("/");
         String id = pathParts[1];
         DAO.delete(Long.parseLong(id));

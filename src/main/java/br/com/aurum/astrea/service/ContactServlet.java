@@ -21,7 +21,8 @@ public class ContactServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		BufferedReader reader = req.getReader();
-		cs.saveContact(reader);
+		Contact contact = new Gson().fromJson(reader, Contact.class);
+		cs.saveContact(contact);
 	}
 
 	@Override
